@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing URL Detector</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Phishing Link Detection</h1>
+
+    <form action="/predict" method="post">
+
+        <input
+            type="text"
+            name="url"
+            placeholder="Enter URL"
+            required
+        >
+
+        <button type="submit">
+            Check URL
+        </button>
+
+    </form>
+
+    {% if prediction_text %}
+
+    <div class="result">
+
+        <h2>{{ prediction_text }}</h2>
+
+        <p>
+            Confidence Score:
+            <strong>{{ confidence }}%</strong>
+        </p>
+
+        <p>
+            VirusTotal Status:
+            <strong>{{ api_result }}</strong>
+        </p>
+
+        <p>
+            Scanned URL:
+            <strong>{{ url }}</strong>
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
